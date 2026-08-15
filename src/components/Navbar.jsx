@@ -199,13 +199,13 @@ export default function Navbar() {
             )}
           </nav>
 
-          {/* Right Controls: Theme Switcher, Role Switcher & Auth Sign In Button */}
-          <div className="flex items-center gap-2 shrink-0">
+          {/* Right Controls: Theme Switcher, Role Switcher, Auth Sign In Button & Visible User Name */}
+          <div className="flex items-center gap-1.5 sm:gap-2 shrink-0 min-w-0">
 
             {/* Theme Switcher Button (☀️ Light / 🌙 Dark) */}
             <button
               onClick={toggleTheme}
-              className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl border text-xs font-bold transition-all shadow-xs shrink-0 ${
+              className={`flex items-center gap-1 px-2 py-1.5 rounded-xl border text-xs font-bold transition-all shadow-xs shrink-0 ${
                 theme === 'dark'
                   ? 'bg-slate-800 text-amber-300 border-slate-700 hover:bg-slate-700'
                   : 'bg-amber-100 text-amber-900 border-amber-300 hover:bg-amber-200'
@@ -215,12 +215,12 @@ export default function Navbar() {
               {theme === 'dark' ? (
                 <>
                   <Sun className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-                  <span className="hidden sm:inline">Light</span>
+                  <span className="hidden xl:inline">Light</span>
                 </>
               ) : (
                 <>
                   <Moon className="w-3.5 h-3.5 text-indigo-600 shrink-0" />
-                  <span className="hidden sm:inline">Dark</span>
+                  <span className="hidden xl:inline">Dark</span>
                 </>
               )}
             </button>
@@ -229,11 +229,11 @@ export default function Navbar() {
             {(currentRole === 'intern' ? isInternLoggedIn : isAdminLoggedIn) ? (
               <button
                 onClick={logout}
-                className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-slate-800 hover:bg-rose-900/60 text-slate-300 hover:text-rose-200 border border-slate-700 text-xs font-bold transition-all shrink-0"
+                className="flex items-center gap-1 px-2 py-1.5 rounded-xl bg-slate-800 hover:bg-rose-900/60 text-slate-300 hover:text-rose-200 border border-slate-700 text-xs font-bold transition-all shrink-0"
                 title="Sign out of current account"
               >
                 <LogOut className="w-3.5 h-3.5 text-rose-400" />
-                <span className="hidden sm:inline">Sign Out</span>
+                <span className="hidden xl:inline">Sign Out</span>
               </button>
             ) : (
               <button
@@ -241,52 +241,55 @@ export default function Navbar() {
                   setInitialAuthTab(currentRole === 'admin' ? 'admin' : 'intern');
                   setActiveTab('login');
                 }}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-extrabold transition-all shadow-md shadow-emerald-600/30 shrink-0"
+                className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-extrabold transition-all shadow-md shadow-emerald-600/30 shrink-0"
               >
                 <LogIn className="w-3.5 h-3.5" />
-                <span>Sign In</span>
+                <span className="hidden sm:inline">Sign In</span>
               </button>
             )}
 
             {/* Role Switcher Button */}
             <button
               onClick={handleRoleToggle}
-              className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl text-xs font-semibold border transition-all shadow-sm shrink-0 whitespace-nowrap ${
+              className={`flex items-center gap-1 px-2 py-1.5 rounded-xl text-xs font-semibold border transition-all shadow-sm shrink-0 whitespace-nowrap ${
                 currentRole === 'admin'
                   ? 'bg-purple-950/90 text-purple-200 border-purple-600/60 hover:bg-purple-900'
                   : 'bg-indigo-950/90 text-indigo-200 border-indigo-600/60 hover:bg-indigo-900'
               }`}
-              title="Click to switch role view (requires credentials)"
+              title="Click to switch role view"
             >
               {currentRole === 'admin' ? (
                 <>
                   <UserCheck className="w-3.5 h-3.5 text-purple-400 shrink-0" />
-                  <span className="hidden sm:inline">Role:</span>
+                  <span className="hidden xl:inline text-[10px]">Role:</span>
                   <span className="bg-purple-600 text-white px-1.5 py-0.5 rounded font-bold uppercase tracking-wider text-[9px]">ADMIN</span>
                 </>
               ) : (
                 <>
                   <User className="w-3.5 h-3.5 text-indigo-400 shrink-0" />
-                  <span className="hidden sm:inline">Role:</span>
+                  <span className="hidden xl:inline text-[10px]">Role:</span>
                   <span className="bg-indigo-600 text-white px-1.5 py-0.5 rounded font-bold uppercase tracking-wider text-[9px]">INTERN</span>
                 </>
               )}
             </button>
 
-            {/* Profile Avatar */}
+            {/* Always Visible User/Admin Name Profile Section */}
             {currentRole === 'intern' ? (
               <div 
                 onClick={() => handleNavClick('profile')}
-                className="flex items-center gap-2 p-1 sm:px-2.5 rounded-xl bg-slate-800/90 border border-slate-700 hover:border-slate-600 cursor-pointer transition-colors shrink-0 max-w-[140px]"
+                className="flex items-center gap-2 px-2.5 py-1 rounded-xl bg-indigo-950/80 border border-indigo-500/50 hover:border-indigo-400 hover:bg-indigo-900/80 cursor-pointer transition-all shrink-0 shadow-sm"
+                title={`View ${user.name}'s Profile`}
               >
                 <img 
                   src={user.avatar} 
                   alt={user.name} 
                   className="w-7 h-7 rounded-full object-cover border border-indigo-400 shrink-0"
                 />
-                <div className="hidden md:block text-left min-w-0 flex-1">
-                  <p className="text-[11px] font-bold text-white leading-tight truncate">{user.name}</p>
-                  <p className="text-[9px] text-indigo-300 font-medium truncate max-w-[85px]">{activeCourse.title}</p>
+                <div className="flex flex-col text-left min-w-0">
+                  <div className="flex items-center gap-1">
+                    <span className="text-xs font-black text-white leading-tight whitespace-nowrap">{user.name}</span>
+                  </div>
+                  <span className="text-[9.5px] text-indigo-300 font-medium whitespace-nowrap leading-none hidden sm:block">{activeCourse.title}</span>
                 </div>
               </div>
             ) : (
@@ -295,7 +298,7 @@ export default function Navbar() {
                   setActiveAdminTab('admin-settings');
                   handleNavClick('admin');
                 }}
-                className="flex items-center gap-2 p-1 sm:px-2.5 rounded-xl bg-purple-900/50 border border-purple-700/60 hover:border-purple-600 cursor-pointer transition-colors shrink-0 max-w-[140px]"
+                className="flex items-center gap-2 px-2.5 py-1 rounded-xl bg-purple-950/80 border border-purple-500/60 hover:border-purple-400 hover:bg-purple-900/80 cursor-pointer transition-all shrink-0 shadow-sm"
                 title="Click to view Admin Profile Details & Settings"
               >
                 <img 
@@ -303,9 +306,11 @@ export default function Navbar() {
                   alt={admin.name} 
                   className="w-7 h-7 rounded-full object-cover border border-purple-400 shrink-0"
                 />
-                <div className="hidden md:block text-left min-w-0 flex-1">
-                  <p className="text-[11px] font-bold text-purple-100 leading-tight truncate">{admin.name}</p>
-                  <p className="text-[9px] text-purple-300 font-medium truncate max-w-[85px]">Platform Admin</p>
+                <div className="flex flex-col text-left min-w-0">
+                  <div className="flex items-center gap-1">
+                    <span className="text-xs font-black text-purple-100 leading-tight whitespace-nowrap">{admin.name}</span>
+                  </div>
+                  <span className="text-[9.5px] text-purple-300 font-medium whitespace-nowrap leading-none hidden sm:block">Platform Admin</span>
                 </div>
               </div>
             )}
