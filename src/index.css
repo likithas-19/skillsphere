@@ -1,0 +1,235 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html, body {
+    @apply bg-slate-50 text-slate-800 antialiased;
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
+  html.dark, html.dark body {
+    @apply bg-slate-950 text-slate-100;
+  }
+
+  /* Global Dark Mode High Contrast Overrides */
+  html.dark h1, 
+  html.dark h2, 
+  html.dark h3, 
+  html.dark h4, 
+  html.dark h5, 
+  html.dark h6 {
+    color: #f8fafc !important;
+  }
+
+  html.dark .text-slate-900, 
+  html.dark .text-slate-800 {
+    color: #f8fafc !important;
+  }
+
+  html.dark .text-slate-700, 
+  html.dark .text-slate-600 {
+    color: #cbd5e1 !important;
+  }
+
+  html.dark .text-slate-500 {
+    color: #94a3b8 !important;
+  }
+
+  /* Dark Mode Container Backgrounds */
+  html.dark .bg-white {
+    background-color: #0f172a !important;
+    border-color: #1e293b !important;
+    color: #f8fafc !important;
+  }
+
+  html.dark .bg-slate-50 {
+    background-color: #1e293b !important;
+    border-color: #334155 !important;
+  }
+
+  /* Dark Mode Chips, Pills, Badges & Buttons */
+  html.dark .bg-slate-100,
+  html.dark .bg-slate-200 {
+    background-color: #1e293b !important;
+    border-color: #334155 !important;
+    color: #f8fafc !important;
+  }
+
+  html.dark .bg-rose-100 {
+    background-color: rgba(159, 18, 57, 0.4) !important;
+    border-color: rgba(244, 63, 94, 0.5) !important;
+    color: #fca5a5 !important;
+  }
+  html.dark .text-rose-800, html.dark .text-rose-700 {
+    color: #fca5a5 !important;
+  }
+
+  html.dark .bg-amber-100 {
+    background-color: rgba(180, 83, 9, 0.4) !important;
+    border-color: rgba(245, 158, 11, 0.5) !important;
+    color: #fde047 !important;
+  }
+  html.dark .text-amber-800, html.dark .text-amber-700 {
+    color: #fde047 !important;
+  }
+
+  html.dark .bg-blue-100 {
+    background-color: rgba(30, 58, 138, 0.5) !important;
+    border-color: rgba(59, 130, 246, 0.5) !important;
+    color: #93c5fd !important;
+  }
+  html.dark .text-blue-800, html.dark .text-blue-700 {
+    color: #93c5fd !important;
+  }
+
+  html.dark .bg-emerald-100 {
+    background-color: rgba(6, 78, 59, 0.5) !important;
+    border-color: rgba(16, 185, 129, 0.5) !important;
+    color: #6ee7b7 !important;
+  }
+  html.dark .text-emerald-800, html.dark .text-emerald-700 {
+    color: #6ee7b7 !important;
+  }
+
+  html.dark .bg-purple-100 {
+    background-color: rgba(88, 28, 135, 0.5) !important;
+    border-color: rgba(168, 85, 247, 0.5) !important;
+    color: #d8b4fe !important;
+  }
+  html.dark .text-purple-800, html.dark .text-purple-700 {
+    color: #d8b4fe !important;
+  }
+
+  html.dark .bg-indigo-100 {
+    background-color: rgba(49, 46, 129, 0.5) !important;
+    border-color: rgba(99, 102, 241, 0.5) !important;
+    color: #c7d2fe !important;
+  }
+  html.dark .text-indigo-800, 
+  html.dark .text-indigo-700,
+  html.dark .text-indigo-900,
+  html.dark .text-indigo-950 {
+    color: #c7d2fe !important;
+  }
+
+  /* Form Controls in Dark Mode: Sleek dark inputs with crisp white font */
+  html.dark input, 
+  html.dark textarea, 
+  html.dark select {
+    background-color: #1e293b !important;
+    color: #ffffff !important;
+    border-color: #334155 !important;
+  }
+
+  html.dark input::placeholder, 
+  html.dark textarea::placeholder {
+    color: #94a3b8 !important;
+  }
+
+  /* Form Controls in Light Mode: Crisp white inputs with dark font */
+  html:not(.dark) input, 
+  html:not(.dark) textarea, 
+  html:not(.dark) select {
+    background-color: #ffffff !important;
+    color: #0f172a !important;
+    border-color: #cbd5e1 !important;
+  }
+
+  html:not(.dark) input::placeholder, 
+  html:not(.dark) textarea::placeholder {
+    color: #64748b !important;
+  }
+
+  /* Light Mode High Contrast Font Overrides */
+  html:not(.dark) .text-slate-400 {
+    color: #475569 !important;
+  }
+
+  html:not(.dark) .text-slate-500 {
+    color: #334155 !important;
+  }
+
+  html:not(.dark) .text-slate-600 {
+    color: #1e293b !important;
+  }
+
+  html:not(.dark) .text-indigo-300,
+  html:not(.dark) .text-indigo-200 {
+    color: #3730a3 !important;
+  }
+
+  html:not(.dark) .text-purple-300,
+  html:not(.dark) .text-purple-200 {
+    color: #5b21b6 !important;
+  }
+
+  html:not(.dark) .text-emerald-300,
+  html:not(.dark) .text-emerald-200 {
+    color: #065f46 !important;
+  }
+}
+
+/* Glassmorphism helpers */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+.glass-dark {
+  background: rgba(15, 23, 42, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Gradient Text */
+.gradient-text {
+  background: linear-gradient(135deg, #312E81 0%, #4338CA 50%, #6366F1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-text-accent {
+  background: linear-gradient(135deg, #4338CA 0%, #7C3AED 50%, #C084FC 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F1F5F9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+
+/* Print Styling for Certificates */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #printable-certificate, #printable-certificate * {
+    visibility: visible;
+  }
+  #printable-certificate {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+}
