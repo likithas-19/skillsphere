@@ -117,13 +117,13 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16 gap-2 sm:gap-4 relative">
           
           {/* Logo & Tagline */}
-          <div className="flex items-center gap-2.5 cursor-pointer group shrink-0" onClick={() => setActiveTab('home')}>
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-purple-500 flex items-center justify-center shadow-md shadow-indigo-500/30 group-hover:scale-105 transition-transform">
-              <Sparkles className="w-5 h-5 text-white" />
+          <div className="flex items-center gap-2 cursor-pointer group shrink-0" onClick={() => setActiveTab('home')}>
+            <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-purple-500 flex items-center justify-center shadow-md shadow-indigo-500/30 group-hover:scale-105 transition-transform">
+              <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
             </div>
             <div>
               <div className="flex items-center gap-1.5">
-                <span className="font-extrabold text-lg sm:text-xl tracking-tight font-sans">
+                <span className="font-extrabold text-base sm:text-lg tracking-tight font-sans">
                   <span className="text-indigo-400 font-black">SKILL</span>
                   <span className="text-purple-400 font-black">SPHERE</span>
                 </span>
@@ -131,12 +131,12 @@ export default function Navbar() {
                   EdTech
                 </span>
               </div>
-              <p className="text-[10px] text-slate-400 hidden md:block">Every Skill. Every Path. One Platform.</p>
+              <p className="text-[10px] text-slate-400 hidden 2xl:block">Every Skill. Every Path. One Platform.</p>
             </div>
           </div>
 
           {/* Desktop Primary Nav Links */}
-          <nav className="hidden lg:flex items-center gap-1 bg-slate-800/90 p-1 rounded-xl border border-slate-700/80 shrink-0">
+          <nav className="hidden xl:flex items-center gap-0.5 bg-slate-800/90 p-1 rounded-xl border border-slate-700/80 shrink-0">
             {primaryLinks.map((link) => {
               const Icon = link.icon;
               const isActive = activeTab === link.id;
@@ -144,7 +144,7 @@ export default function Navbar() {
                 <button
                   key={link.id}
                   onClick={() => handleNavClick(link.id)}
-                  className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium transition-all whitespace-nowrap ${
+                  className={`flex items-center gap-1 px-2 py-1 rounded-lg text-xs font-medium transition-all whitespace-nowrap ${
                     isActive 
                       ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30 font-semibold' 
                       : 'text-slate-300 hover:text-white hover:bg-slate-700/50'
@@ -161,7 +161,7 @@ export default function Navbar() {
               <div className="relative" ref={dropdownRef}>
                 <button
                   onClick={() => setMoreDropdownOpen(!moreDropdownOpen)}
-                  className={`flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs font-medium transition-all whitespace-nowrap ${
+                  className={`flex items-center gap-1 px-2 py-1 rounded-lg text-xs font-medium transition-all whitespace-nowrap ${
                     secondaryLinks.some(l => l.id === activeTab) || moreDropdownOpen
                       ? 'bg-indigo-600 text-white shadow-md'
                       : 'text-slate-300 hover:text-white hover:bg-slate-700/50'
@@ -201,7 +201,7 @@ export default function Navbar() {
           </nav>
 
           {/* Right Controls: Theme Switcher, Role Switcher, Auth Sign In Button & Visible User Name */}
-          <div className="flex items-center gap-1.5 sm:gap-2 shrink-0 min-w-0">
+          <div className="flex items-center gap-1 sm:gap-1.5 shrink-0 min-w-0">
 
             {/* Theme Switcher Button (☀️ Light / 🌙 Dark) */}
             <button
@@ -216,12 +216,12 @@ export default function Navbar() {
               {theme === 'dark' ? (
                 <>
                   <Sun className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-                  <span className="hidden xl:inline">Light</span>
+                  <span className="hidden 2xl:inline">Light</span>
                 </>
               ) : (
                 <>
                   <Moon className="w-3.5 h-3.5 text-indigo-600 shrink-0" />
-                  <span className="hidden xl:inline">Dark</span>
+                  <span className="hidden 2xl:inline">Dark</span>
                 </>
               )}
             </button>
@@ -234,7 +234,7 @@ export default function Navbar() {
                 title="Sign out of current account"
               >
                 <LogOut className="w-3.5 h-3.5 text-rose-400" />
-                <span className="hidden xl:inline">Sign Out</span>
+                <span className="hidden 2xl:inline">Sign Out</span>
               </button>
             ) : (
               <button
@@ -262,23 +262,23 @@ export default function Navbar() {
               {currentRole === 'admin' ? (
                 <>
                   <UserCheck className="w-3.5 h-3.5 text-purple-400 shrink-0" />
-                  <span className="hidden xl:inline text-[10px]">Role:</span>
+                  <span className="hidden 2xl:inline text-[10px]">Role:</span>
                   <span className="bg-purple-600 text-white px-1.5 py-0.5 rounded font-bold uppercase tracking-wider text-[9px]">ADMIN</span>
                 </>
               ) : (
                 <>
                   <User className="w-3.5 h-3.5 text-indigo-400 shrink-0" />
-                  <span className="hidden xl:inline text-[10px]">Role:</span>
+                  <span className="hidden 2xl:inline text-[10px]">Role:</span>
                   <span className="bg-indigo-600 text-white px-1.5 py-0.5 rounded font-bold uppercase tracking-wider text-[9px]">INTERN</span>
                 </>
               )}
             </button>
 
-            {/* Always Visible User/Admin Name Profile Section */}
+            {/* Always Visible User Profile Badge with Name */}
             {currentRole === 'intern' ? (
               <div 
                 onClick={() => handleNavClick('profile')}
-                className="flex items-center gap-2 px-2.5 py-1 rounded-xl bg-indigo-950/80 border border-indigo-500/50 hover:border-indigo-400 hover:bg-indigo-900/80 cursor-pointer transition-all shrink-0 shadow-sm"
+                className="flex items-center gap-2 px-2.5 py-1 rounded-xl bg-indigo-950/90 border border-indigo-500/60 hover:border-indigo-400 hover:bg-indigo-900/90 cursor-pointer transition-all shrink-0 shadow-sm"
                 title={`View ${user.name}'s Profile`}
               >
                 <img 
@@ -287,10 +287,8 @@ export default function Navbar() {
                   className="w-7 h-7 rounded-full object-cover border border-indigo-400 shrink-0"
                 />
                 <div className="flex flex-col text-left min-w-0">
-                  <div className="flex items-center gap-1">
-                    <span className="text-xs font-black text-white leading-tight whitespace-nowrap">{user.name}</span>
-                  </div>
-                  <span className="text-[9.5px] text-indigo-300 font-medium whitespace-nowrap leading-none hidden sm:block">{activeCourse.title}</span>
+                  <span className="text-xs font-black text-white leading-tight whitespace-nowrap">{user.name}</span>
+                  <span className="text-[9px] text-indigo-300 font-medium whitespace-nowrap leading-none hidden 2xl:block">{activeCourse.title}</span>
                 </div>
               </div>
             ) : (
@@ -299,7 +297,7 @@ export default function Navbar() {
                   setActiveAdminTab('admin-settings');
                   handleNavClick('admin');
                 }}
-                className="flex items-center gap-2 px-2.5 py-1 rounded-xl bg-purple-950/80 border border-purple-500/60 hover:border-purple-400 hover:bg-purple-900/80 cursor-pointer transition-all shrink-0 shadow-sm"
+                className="flex items-center gap-2 px-2.5 py-1 rounded-xl bg-purple-950/90 border border-purple-500/60 hover:border-purple-400 hover:bg-purple-900/90 cursor-pointer transition-all shrink-0 shadow-sm"
                 title="Click to view Admin Profile Details & Settings"
               >
                 <img 
@@ -308,18 +306,16 @@ export default function Navbar() {
                   className="w-7 h-7 rounded-full object-cover border border-purple-400 shrink-0"
                 />
                 <div className="flex flex-col text-left min-w-0">
-                  <div className="flex items-center gap-1">
-                    <span className="text-xs font-black text-purple-100 leading-tight whitespace-nowrap">{admin.name}</span>
-                  </div>
-                  <span className="text-[9.5px] text-purple-300 font-medium whitespace-nowrap leading-none hidden sm:block">Platform Admin</span>
+                  <span className="text-xs font-black text-purple-100 leading-tight whitespace-nowrap">{admin.name}</span>
+                  <span className="text-[9px] text-purple-300 font-medium whitespace-nowrap leading-none hidden 2xl:block">Platform Admin</span>
                 </div>
               </div>
             )}
 
-            {/* Mobile / Medium Screen Hamburger Toggle */}
+            {/* Mobile / Medium / Large Screen Hamburger Toggle */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 shrink-0"
+              className="xl:hidden p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 shrink-0"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
