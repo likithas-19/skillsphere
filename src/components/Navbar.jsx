@@ -22,6 +22,7 @@ import {
   Moon
 } from 'lucide-react';
 
+// Navbar component with responsive layout and visible user/admin profile name
 export default function Navbar() {
   const { 
     theme,
